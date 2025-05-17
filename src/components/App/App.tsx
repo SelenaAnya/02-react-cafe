@@ -14,10 +14,10 @@ const App: React.FC = () => {
     bad: 0,
   });
 
-  // Обчислення загальної кількості голосів
+  // Calculating the total number of votes
   const totalVotes = votes.good + votes.neutral + votes.bad;
 
-  // Підрахунок відсотка позитивних відгуків
+  // Calculating the percentage of positive feedback
   const positiveRate = totalVotes
     ? Math.round((votes.good / totalVotes) * 100)
     : 0;
