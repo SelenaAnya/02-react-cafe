@@ -1,38 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import css from './VoteOptions.module.css';
+import { VoteType } from '../../types/votes';
 
-type VoteType = 'good' | 'neutral' | 'bad';
+interface VoteOptionsProps {
+  onVote: (type: VoteType) => void;
+  onReset: () => void;
+  canReset: boolean;
+}
 
-const VoteOptions: React.FC = () => {
-  const [votes, setVotes] = useState<{ [key in VoteType]: number }>({
-    good: 0,
-    neutral: 0,
-    bad: 0,
-  });
-
-  const handleVote = (type: VoteType) => {
-    setVotes((prevVotes) => ({
-      ...prevVotes,
-      [type]: prevVotes[type] + 1,
-    }));
-  };
-
+const VoteOptions: React.FC<VoteOptionsProps> = ({ onVote, onReset, canReset }) => {
   return (
     <div className={css.container}>
-      <button className={css.button} onClick={() => handleVote('good')}>
-        Good 👍
-      </button>
-      <button className={css.button} onClick={() => handleVote('neutral')}>
-        Neutral 😐
-      </button>
-      <button className={css.button} onClick={() => handleVote('bad')}>
-        Bad 👎
-      </button>
-      <div className={css.stats}>
-        <p>Good: {votes.good}</p>
-        <p>Neutral: {votes.neutral}</p>
-        <p>Bad: {votes.bad}</p>
-      </div>
+      <button className={css.button} onClick={() => onVote('good')}>Good 👍</button>
+      <button className={css.button} onClick={() => onVote('neutral')}>Neutral 😐</button>
+      <button className={css.button} onClick={() => onVote('bad')}>Bad 👎</button>
+      {canReset && <button className={`${css.button} ${css.reset}`} onClick={onReset}>Reset</button>}
     </div>
   );
 };
