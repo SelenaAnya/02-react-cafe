@@ -1,13 +1,7 @@
-import React from 'react';
-import CafeInfo from '../CafeInfo/CafeInfo';
-import css from './App.module.css';
+export type VoteType = 'good' | 'neutral' | 'bad';
 
-const App: React.FC = () => {
-  return (
-    <div className={css.app}>
-      <CafeInfo />
-    </div>
-  );
-};
-
-export default App;
+export interface VoteStats {
+  good: number;
+  neutral: number;
+  bad: number;
+}
