@@ -4,7 +4,7 @@ import VoteOptions from '../VoteOptions/VoteOptions';
 import VoteStats from '../VoteStats/VoteStats';
 import Notification from '../Notification/Notification';
 import css from './App.module.css';
-import type { Votes, VoteType } from '../types/votes';
+import type { Votes, VoteType } from '../../types/votes';
 
 const App: React.FC = () => {
   const [votes, setVotes] = useState<Votes>({
@@ -18,12 +18,12 @@ const App: React.FC = () => {
     ? Math.round((votes.good / totalVotes) * 100)
     : 0;
 
-    const handleVote = (type: VoteType) => {
-      setVotes((prevVotes: Votes) => ({
-        ...prevVotes,
-        [type]: prevVotes[type] + 1,
-      }));
-    };
+  const handleVote = (type: VoteType) => {
+    setVotes((prevVotes: Votes) => ({
+      ...prevVotes,
+      [type]: prevVotes[type] + 1,
+    }));
+  };
 
   const resetVotes = () => {
     setVotes({ good: 0, neutral: 0, bad: 0 });
